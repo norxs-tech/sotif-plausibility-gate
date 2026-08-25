@@ -1,0 +1,230 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  unit-tests:
+    name: unit-tests (${{ matrix.module }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {module: sotif-gate,
+             dir: sotif-gate,
+             include: "-Iinclude -Ivendor-autosar-soa-gateway/include",
+             sources: "src/SotifPlausibilityGate.cpp vendor-autosar-soa-gateway/src/IpcBridge.cpp tests/test_SotifPlausibilityGate.cpp"}
+          - {module: pqc-kem-extension,
+             dir: pqc-kem-extension,
+             include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/PqcKemPlatformInterface.cpp tests/test_PqcKemPlatformInterface.cpp"}
+          - {module: pqc-signature-extension,
+             dir: pqc-signature-extension,
+             include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/PqcSignaturePlatformInterface.cpp src/HybridAuthGate.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp vendor/zonal-zero-trust-auth/src/SpdmProtocolEngine.cpp tests/test_HybridAuthGate.cpp"}
+          - {module: v2x-trust-extension-verifier,
+             dir: v2x-trust-extension,
+             include: "-Iinclude -Ivendor/autosar-soa-gateway/include -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/V2xTrustVerifier.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp tests/test_V2xTrustVerifier.cpp"}
+          - {module: v2x-trust-extension-adapter,
+             dir: v2x-trust-extension,
+             include: "-Iinclude -Ivendor/autosar-soa-gateway/include -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/V2xNetworkAdapter.cpp src/V2xTrustVerifier.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp tests/test_V2xNetworkAdapter.cpp"}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build (strict flags, warnings are errors)
+        working-directory: ${{ matrix.dir }}
+        env:
+          INCLUDE_FLAGS: ${{ matrix.include }}
+          SOURCES: ${{ matrix.sources }}
+        run: |
+          g++ -std=c++14 -Wall -Wextra -Werror -Wshadow -Wconversion -Wcast-qual \
+              $INCLUDE_FLAGS -o module_test $SOURCES
+
+      - name: Run tests
+        working-directory: ${{ matrix.dir }}
+        run: ./module_test
+
+  coverage:
+    name: coverage-gate (${{ matrix.module }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {module: sotif-gate,
+             dir: sotif-gate,
+             covered_file: SotifPlausibilityGate.cpp,
+             include: "-Iinclude -Ivendor-autosar-soa-gateway/include",
+             sources: "src/SotifPlausibilityGate.cpp vendor-autosar-soa-gateway/src/IpcBridge.cpp tests/test_SotifPlausibilityGate.cpp",
+             min_coverage: "90"}
+          - {module: pqc-kem-extension,
+             dir: pqc-kem-extension,
+             covered_file: PqcKemPlatformInterface.cpp,
+             include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/PqcKemPlatformInterface.cpp tests/test_PqcKemPlatformInterface.cpp",
+             min_coverage: "90"}
+          - {module: pqc-signature-extension,
+             dir: pqc-signature-extension,
+             covered_file: HybridAuthGate.cpp,
+             include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/PqcSignaturePlatformInterface.cpp src/HybridAuthGate.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp vendor/zonal-zero-trust-auth/src/SpdmProtocolEngine.cpp tests/test_HybridAuthGate.cpp",
+             min_coverage: "90"}
+          - {module: v2x-trust-extension-verifier,
+             dir: v2x-trust-extension,
+             covered_file: V2xTrustVerifier.cpp,
+             include: "-Iinclude -Ivendor/autosar-soa-gateway/include -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/V2xTrustVerifier.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp tests/test_V2xTrustVerifier.cpp",
+             min_coverage: "90"}
+          - {module: v2x-trust-extension-adapter,
+             dir: v2x-trust-extension,
+             covered_file: V2xNetworkAdapter.cpp,
+             include: "-Iinclude -Ivendor/autosar-soa-gateway/include -Ivendor/zonal-zero-trust-auth/include",
+             sources: "src/V2xNetworkAdapter.cpp src/V2xTrustVerifier.cpp vendor/zonal-zero-trust-auth/src/CryptoPlatformInterface.cpp tests/test_V2xNetworkAdapter.cpp",
+             min_coverage: "90"}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with --coverage
+        working-directory: ${{ matrix.dir }}
+        env:
+          INCLUDE_FLAGS: ${{ matrix.include }}
+          SOURCES: ${{ matrix.sources }}
+        run: |
+          g++ -std=c++14 -Wall -Wextra --coverage -O0 \
+              $INCLUDE_FLAGS -o cov_test $SOURCES
+
+      - name: Run instrumented tests
+        working-directory: ${{ matrix.dir }}
+        run: ./cov_test
+
+      - name: Gate on line coverage
+        working-directory: ${{ matrix.dir }}
+        env:
+          COVERED_FILE: ${{ matrix.covered_file }}
+          MIN_COVERAGE: ${{ matrix.min_coverage }}
+        run: |
+          # Two real failures found on the actual runner (not reproducible
+          # in the sandbox this was first written in) that a single-.gcda
+          # guess can't handle correctly:
+          #   1. gcov reports the source with whatever path was passed to
+          #      the compiler (e.g. "src/SotifPlausibilityGate.cpp"), not
+          #      just the bare filename - a bare-filename grep pattern
+          #      never matches.
+          #   2. A suffix-wildcard glob for the .gcda file (e.g.
+          #      "*PqcKemPlatformInterface.gcda") also matches
+          #      "test_PqcKemPlatformInterface.gcda", silently grabbing the
+          #      TEST file's compilation unit instead of the SOURCE file's -
+          #      which never contains the source file's own coverage data.
+          #
+          # Fix: run gcov over every .gcda file in one invocation (so the
+          # source file's own gcda is always included, regardless of which
+          # file "won" a naming guess), then match the file section with a
+          # regex anchored on the whole quoted path - "(dir/)?exact-name"
+          # only, so "test_X.cpp" can never satisfy a pattern for "X.cpp".
+          GCDA_FILES=$(find . -name "*.gcda")
+          if [ -z "$GCDA_FILES" ]; then
+            echo "ERROR: no .gcda files found at all."
+            exit 1
+          fi
+          echo "Coverage data files found:"
+          echo "$GCDA_FILES"
+
+          GCOV_OUTPUT=$(gcov $GCDA_FILES 2>&1)
+          echo "$GCOV_OUTPUT"
+
+          ESCAPED_FILE=$(printf '%s' "$COVERED_FILE" | sed 's/[.]/\\./g')
+          PCT=$(echo "$GCOV_OUTPUT" \
+                | grep -A1 -E "^File '([^']*/)?${ESCAPED_FILE}'$" \
+                | grep "Lines executed" \
+                | sed -E 's/Lines executed:([0-9.]+)%.*/\1/' \
+                | head -n1)
+
+          if [ -z "$PCT" ]; then
+            echo "ERROR: could not parse a coverage percentage for ${COVERED_FILE} out of gcov's output above."
+            exit 1
+          fi
+
+          echo "Line coverage for ${COVERED_FILE}: ${PCT}% (gate: >= ${MIN_COVERAGE}%)"
+          awk -v pct="$PCT" -v min="$MIN_COVERAGE" 'BEGIN { exit !(pct >= min) }'
+
+  formal-verification:
+    name: formal-verification (SafetyArbitrator)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build the exhaustive verification harness
+        working-directory: formal-verification/harness
+        run: |
+          g++ -std=c++14 -Wall -Wextra -Wshadow -Wconversion -Wcast-qual \
+              -I../vendor/autosar-soa-gateway/include \
+              -o verify verify_safety_arbitrator.cpp \
+              ../vendor/autosar-soa-gateway/src/SafetyArbitrator.cpp \
+              ../vendor/autosar-soa-gateway/src/IpcBridge.cpp
+
+      - name: Run - exit 0 means findings match the documented, expected count
+        working-directory: formal-verification/harness
+        run: ./verify
+
+  static-analysis:
+    name: cppcheck (${{ matrix.module }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {module: sotif-gate, dir: sotif-gate, include: "-Iinclude -Ivendor-autosar-soa-gateway/include", src_dir: src}
+          - {module: pqc-kem-extension, dir: pqc-kem-extension, include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include", src_dir: src}
+          - {module: pqc-signature-extension, dir: pqc-signature-extension, include: "-Iinclude -Ivendor/zonal-zero-trust-auth/include", src_dir: src}
+          - {module: formal-verification, dir: formal-verification, include: "-Ivendor/autosar-soa-gateway/include", src_dir: harness}
+          - {module: v2x-trust-extension, dir: v2x-trust-extension, include: "-Iinclude -Ivendor/autosar-soa-gateway/include -Ivendor/zonal-zero-trust-auth/include", src_dir: src}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install cppcheck
+        run: sudo apt-get update && sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck (zero findings policy on error/warning level)
+        working-directory: ${{ matrix.dir }}
+        env:
+          INCLUDE_FLAGS: ${{ matrix.include }}
+        run: |
+          cppcheck --enable=warning,style,performance,portability \
+              --error-exitcode=1 --std=c++14 --language=c++ \
+              --suppress=missingIncludeSystem \
+              $INCLUDE_FLAGS ${{ matrix.src_dir }}/
+
+  supply-chain-compliance:
+    name: supply-chain-compliance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify LICENSE, SECURITY.md, NOTICE-equivalent, SBOM present
+        run: |
+          test -f LICENSE
+          test -f SECURITY.md
+          test -f sbom/sotif-plausibility-gate.spdx.json
+          echo "All required governance files present."
+
+      - name: Verify every .hpp/.cpp file carries a norxs copyright header
+        run: |
+          missing=0
+          for f in $(find . -name "*.hpp" -o -name "*.cpp" | grep -v vendor); do
+            if ! grep -q "norxs Technology LLC" "$f"; then
+              echo "MISSING COPYRIGHT HEADER: $f"
+              missing=1
+            fi
+          done
+          exit $missing
