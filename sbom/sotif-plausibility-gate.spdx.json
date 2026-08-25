@@ -1,0 +1,525 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "sotif-plausibility-gate-0.2.0",
+  "documentNamespace": "https://norxs.com/spdx/sotif-plausibility-gate-0.2.0",
+  "creationInfo": {
+    "created": "2026-08-25T05:26:07Z",
+    "creators": [
+      "Organization: norxs Technology LLC",
+      "Tool: generate_sbom.py"
+    ]
+  },
+  "packages": [
+    {
+      "name": "sotif-plausibility-gate",
+      "SPDXID": "SPDXRef-Package-sotif-plausibility-gate",
+      "versionInfo": "0.2.0",
+      "downloadLocation": "https://github.com/norxs-tech/sotif-plausibility-gate",
+      "licenseConcluded": "LicenseRef-norxs-RI-1.0",
+      "licenseDeclared": "LicenseRef-norxs-RI-1.0",
+      "copyrightText": "(c) 2026 norxs Technology LLC. All rights reserved.",
+      "hasFiles": [
+        "SPDXRef-File--DS_Store",
+        "SPDXRef-File--github--DS_Store",
+        "SPDXRef-File--github-workflows-ci-yml",
+        "SPDXRef-File--gitignore",
+        "SPDXRef-File-CHANGELOG-md",
+        "SPDXRef-File-LICENSE",
+        "SPDXRef-File-README-md",
+        "SPDXRef-File-SECURITY-md",
+        "SPDXRef-File-docs-COMPLIANCE-md",
+        "SPDXRef-File-docs-COVERAGE_DEVIATIONS-md",
+        "SPDXRef-File-formal-verification-README-md",
+        "SPDXRef-File-formal-verification-docs-FINDINGS-md",
+        "SPDXRef-File-formal-verification-harness-verify_safety_arbitrator-cpp",
+        "SPDXRef-File-pqc-kem-extension--DS_Store",
+        "SPDXRef-File-pqc-kem-extension-README-md",
+        "SPDXRef-File-pqc-kem-extension-include-zzta-PqcKemPlatformInterface-hpp",
+        "SPDXRef-File-pqc-kem-extension-src-PqcKemPlatformInterface-cpp",
+        "SPDXRef-File-pqc-kem-extension-tests-test_PqcKemPlatformInterface-cpp",
+        "SPDXRef-File-pqc-signature-extension-README-md",
+        "SPDXRef-File-pqc-signature-extension-include-norxs-HybridAuthGate-hpp",
+        "SPDXRef-File-pqc-signature-extension-include-zzta-PqcSignaturePlatformInterface-hpp",
+        "SPDXRef-File-pqc-signature-extension-src-HybridAuthGate-cpp",
+        "SPDXRef-File-pqc-signature-extension-src-PqcSignaturePlatformInterface-cpp",
+        "SPDXRef-File-pqc-signature-extension-tests-test_HybridAuthGate-cpp",
+        "SPDXRef-File-sotif-gate--DS_Store",
+        "SPDXRef-File-sotif-gate-README-md",
+        "SPDXRef-File-sotif-gate-include-norxs-SotifPlausibilityGate-hpp",
+        "SPDXRef-File-sotif-gate-src-SotifPlausibilityGate-cpp",
+        "SPDXRef-File-sotif-gate-tests-test_SotifPlausibilityGate-cpp",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway--DS_Store",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-IpcBridge-hpp",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-SafetyArbitrator-hpp",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-SoaServiceManager-hpp",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-src-IpcBridge-cpp",
+        "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-src-SafetyArbitrator-cpp",
+        "SPDXRef-File-tools-generate_sbom-py",
+        "SPDXRef-File-v2x-trust-extension-README-md",
+        "SPDXRef-File-v2x-trust-extension-include-norxs-CooperativeAwarenessAdvisory-hpp",
+        "SPDXRef-File-v2x-trust-extension-include-norxs-V2xCertificate-hpp",
+        "SPDXRef-File-v2x-trust-extension-include-norxs-V2xNetworkAdapter-hpp",
+        "SPDXRef-File-v2x-trust-extension-include-norxs-V2xTrustVerifier-hpp",
+        "SPDXRef-File-v2x-trust-extension-src-V2xNetworkAdapter-cpp",
+        "SPDXRef-File-v2x-trust-extension-src-V2xTrustVerifier-cpp",
+        "SPDXRef-File-v2x-trust-extension-tests-test_V2xNetworkAdapter-cpp",
+        "SPDXRef-File-v2x-trust-extension-tests-test_V2xTrustVerifier-cpp"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./.DS_Store",
+      "SPDXID": "SPDXRef-File--DS_Store",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0f04db9318d5437d9178f0ef5adb2a13ef2e91a879280dc622ef538aded380ae"
+        }
+      ]
+    },
+    {
+      "fileName": "./.github/.DS_Store",
+      "SPDXID": "SPDXRef-File--github--DS_Store",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5aef3be387cd45c175552b675ed803e2e1c3a6771991af1fda32676a88511477"
+        }
+      ]
+    },
+    {
+      "fileName": "./.github/workflows/ci.yml",
+      "SPDXID": "SPDXRef-File--github-workflows-ci-yml",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "00f2c5edf61b71688d1d51bce4c09015f751d16a9d42f31e7cf781be6427344a"
+        }
+      ]
+    },
+    {
+      "fileName": "./.gitignore",
+      "SPDXID": "SPDXRef-File--gitignore",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9550b9891d1e021501d3381ed8516e06eb646e78151eb54d7a9a3e80dfe4d01c"
+        }
+      ]
+    },
+    {
+      "fileName": "./CHANGELOG.md",
+      "SPDXID": "SPDXRef-File-CHANGELOG-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "916189186430def733191709d306e11ebf14c343e258f771e75efaa54b30c965"
+        }
+      ]
+    },
+    {
+      "fileName": "./LICENSE",
+      "SPDXID": "SPDXRef-File-LICENSE",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ced7d57eda498a1f5a7d476bbb07a4b00d36cf8a5a008c1cd634d51e002bfefc"
+        }
+      ]
+    },
+    {
+      "fileName": "./README.md",
+      "SPDXID": "SPDXRef-File-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8a0383e0aad6b72a4b74a1da8ab8ebcc3067b168e4cc2b6527b91a263a0695c6"
+        }
+      ]
+    },
+    {
+      "fileName": "./SECURITY.md",
+      "SPDXID": "SPDXRef-File-SECURITY-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d28729b00972fce0534e47a6feceecb9ba9e3a39a450e03833d7a945232eeed1"
+        }
+      ]
+    },
+    {
+      "fileName": "./docs/COMPLIANCE.md",
+      "SPDXID": "SPDXRef-File-docs-COMPLIANCE-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c5b5994dd28a4fa57f27f0b165b66bc377ab4b0d295a4c42f1445f11f337d6af"
+        }
+      ]
+    },
+    {
+      "fileName": "./docs/COVERAGE_DEVIATIONS.md",
+      "SPDXID": "SPDXRef-File-docs-COVERAGE_DEVIATIONS-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "88772eb9f81b0b2f0c5bdaffa415d6d678be6345e16d89e8ac9267453c76925a"
+        }
+      ]
+    },
+    {
+      "fileName": "./formal-verification/README.md",
+      "SPDXID": "SPDXRef-File-formal-verification-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "da6fc284dd96448f530f7875a90f86a33c5987c39f554976f5609cd151554aed"
+        }
+      ]
+    },
+    {
+      "fileName": "./formal-verification/docs/FINDINGS.md",
+      "SPDXID": "SPDXRef-File-formal-verification-docs-FINDINGS-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2459a8c6585d8643b3ab0dcc2d3805deced5a12b8fdb908a78f057f50e1b2637"
+        }
+      ]
+    },
+    {
+      "fileName": "./formal-verification/harness/verify_safety_arbitrator.cpp",
+      "SPDXID": "SPDXRef-File-formal-verification-harness-verify_safety_arbitrator-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2880bbed960eff96456ca0c1307ccf26eea9270306a1d742390d372ffb96cba1"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-kem-extension/.DS_Store",
+      "SPDXID": "SPDXRef-File-pqc-kem-extension--DS_Store",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aa4c5ff2f331c418554ea9bddd251fd85e6c40ba7edc3d58b9e395185abf3626"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-kem-extension/README.md",
+      "SPDXID": "SPDXRef-File-pqc-kem-extension-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "20406031d09b7f32796c1adb829b06cd17655581186a4dc43b9992134411de6d"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-kem-extension/include/zzta/PqcKemPlatformInterface.hpp",
+      "SPDXID": "SPDXRef-File-pqc-kem-extension-include-zzta-PqcKemPlatformInterface-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e59af75fce0708f2f3e2cf6bd0cf4a999807ec85bd0b2b897babe66d54358f2a"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-kem-extension/src/PqcKemPlatformInterface.cpp",
+      "SPDXID": "SPDXRef-File-pqc-kem-extension-src-PqcKemPlatformInterface-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "397e0df14cf160b0d12859b8e049b7e6287280024199af8dd697c34f8d504eb0"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-kem-extension/tests/test_PqcKemPlatformInterface.cpp",
+      "SPDXID": "SPDXRef-File-pqc-kem-extension-tests-test_PqcKemPlatformInterface-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "309e50542397c9373f30c20bcf5ba8591705980a5691bcc633eb56815d694916"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/README.md",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "537107466db3a29576ce9efb9020ed34813e0f4019e2f2be74e90a93f1f5ea35"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/include/norxs/HybridAuthGate.hpp",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-include-norxs-HybridAuthGate-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8d0fbc243f694cb83291837ab8ee783aa0eb84bc035f81c4e02a7ff6d75cbd27"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/include/zzta/PqcSignaturePlatformInterface.hpp",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-include-zzta-PqcSignaturePlatformInterface-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "250dc23cbee16505a288b1ba2850c9280100559140841de033f375a4b008fcbe"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/src/HybridAuthGate.cpp",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-src-HybridAuthGate-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "57c923c8bb60dc04dda3e956f94714dbf5db844cf25e31723edc9cf7487e2ca8"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/src/PqcSignaturePlatformInterface.cpp",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-src-PqcSignaturePlatformInterface-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f4c0be9290c41328ba8cdf791dcc505fc8129c3b0dcca87841e52aeb2e651fce"
+        }
+      ]
+    },
+    {
+      "fileName": "./pqc-signature-extension/tests/test_HybridAuthGate.cpp",
+      "SPDXID": "SPDXRef-File-pqc-signature-extension-tests-test_HybridAuthGate-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f3379db8b80d711bc7f0f3f274bc387434788e5fff9c68f42d2988a4fc5ef686"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/.DS_Store",
+      "SPDXID": "SPDXRef-File-sotif-gate--DS_Store",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a1664b06811099b03df90a886408f7846b1d135fb80c6b509a740751991611a7"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/README.md",
+      "SPDXID": "SPDXRef-File-sotif-gate-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aadf407191479fba2a57e1fde7c337b36ad662cd3faa2e98209fbca704aa4c54"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/include/norxs/SotifPlausibilityGate.hpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-include-norxs-SotifPlausibilityGate-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c98fd6dd682c524cc7c2141a16b1565999db8e2fdcf36af5cd7d168475ac3b93"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/src/SotifPlausibilityGate.cpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-src-SotifPlausibilityGate-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0b2bd4fccf951b5c1790710e7de615214b6ee870761942ddfc892981e0cecbca"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/tests/test_SotifPlausibilityGate.cpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-tests-test_SotifPlausibilityGate-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c486748258b4d0c7daeeaef328a8fae4010ad55ed07f03eee4933bcb1da73ba8"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/.DS_Store",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway--DS_Store",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d44e94a6776d25c0f3d2789bccb999995d5e762e7fe48ba68822d315fac03725"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/include/IpcBridge.hpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-IpcBridge-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b42dc8731dfc5d40e23709b442be11319357bb94c35de206fb8cd2b711366c41"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/include/SafetyArbitrator.hpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-SafetyArbitrator-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4480f83703b0834f31a0313a90b34d6bfe36327a5726ec50060d8d68f4e47666"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/include/SoaServiceManager.hpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-include-SoaServiceManager-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ecd9c58572557d1f6596266836a049086623ed43ad7d0cb815cc5be5ef66cc16"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/src/IpcBridge.cpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-src-IpcBridge-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a2afad4eacb6f8b5ff91dd6439c226d14fc82cbe4c020b61b0eadab0833f6bcb"
+        }
+      ]
+    },
+    {
+      "fileName": "./sotif-gate/vendor-autosar-soa-gateway/src/SafetyArbitrator.cpp",
+      "SPDXID": "SPDXRef-File-sotif-gate-vendor-autosar-soa-gateway-src-SafetyArbitrator-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2aef60882bed807ed97e35cf45b0f8d9058c5e9badfe65a715aedab6cfc50fb8"
+        }
+      ]
+    },
+    {
+      "fileName": "./tools/generate_sbom.py",
+      "SPDXID": "SPDXRef-File-tools-generate_sbom-py",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3621fafad0ec17bd8c232ba9965c4807e6d4d979d615145ee424615e100ed09b"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/README.md",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-README-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b99456d9ce84b35f75ea881a24bb7a168b5c030c55161e95384ad6335fa0d092"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/include/norxs/CooperativeAwarenessAdvisory.hpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-include-norxs-CooperativeAwarenessAdvisory-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fef549f9217612e89ea22c95bb9fac7e29b87f41a9edfb155a645262cb549594"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/include/norxs/V2xCertificate.hpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-include-norxs-V2xCertificate-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "75e121c3a846aa4070164e4a3b765a5a897d6d8f07e118436d63991fbfd50255"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/include/norxs/V2xNetworkAdapter.hpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-include-norxs-V2xNetworkAdapter-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d320dd8c202ba0ad0dafe3ce74e2bd6d36149901d068c8614f874babbfe705de"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/include/norxs/V2xTrustVerifier.hpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-include-norxs-V2xTrustVerifier-hpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c78d7265cd100ee6993abd57feb02d7810877d61e7f966be2362f2105a02de1f"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/src/V2xNetworkAdapter.cpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-src-V2xNetworkAdapter-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e2ac7da10b156677eea83177b4ae894c09e667f67674c62bb938cc3ebbb0487b"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/src/V2xTrustVerifier.cpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-src-V2xTrustVerifier-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4d30250082e9a8f52dcabc89ac1d34ad24d6ad0c5261a1b254827f6c4b0f8d70"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/tests/test_V2xNetworkAdapter.cpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-tests-test_V2xNetworkAdapter-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c24816f1fd5986fe375f1c2cf1f2b84e1f24f1e0d7e6f91b209dc81462071d1f"
+        }
+      ]
+    },
+    {
+      "fileName": "./v2x-trust-extension/tests/test_V2xTrustVerifier.cpp",
+      "SPDXID": "SPDXRef-File-v2x-trust-extension-tests-test_V2xTrustVerifier-cpp",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "93fb6af76003bcc81c93375e1ed92b4740ad0aeb6582e76bf4d88b54291232a7"
+        }
+      ]
+    }
+  ],
+  "comment": "Zero third-party runtime dependencies. Build-time dependency on autosar-soa-gateway (sotif-gate/) and zonal-zero-trust-auth (pqc-kem-extension/) public headers, vendored read-only and excluded from this file list by design."
+}

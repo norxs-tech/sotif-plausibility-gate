@@ -1,0 +1,133 @@
+norxs Reference Implementation License v1.0
+
+Copyright (c) 2026 norxs Technology LLC. All rights reserved.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEFINITIONS
+
+"norxs" means norxs Technology LLC, a limited liability company organised
+under the laws of the State of Wyoming, United States of America.
+
+"SOFTWARE" means the norxs SOTIF Plausibility Gate and PQC KEM Extension —
+an AUTOSAR C++14 companion module set adding an ISO 21448 (SOTIF) plausibility
+check to the SOA Gateway for Autonomous Safety-Supervisor pipeline, and a
+post-quantum Key Encapsulation Mechanism (ML-KEM-768 / FIPS 203) extension
+point to the zonal-zero-trust-authenticator Platform Abstraction Layer, as
+published at https://github.com/norxs-tech/sotif-plausibility-gate, together
+with all associated documentation, test suites, and build system files.
+
+"PERMITTED USE" means reading, studying, evaluating, and building upon the
+SOFTWARE for the sole purpose of assessing the technical capabilities of
+norxs Technology LLC, conducting internal proof-of-concept evaluation, or
+academic research with appropriate attribution.
+
+"COMMERCIAL USE" means any use of the SOFTWARE, in whole or in part, in a
+product, service, or system that is sold, licensed, or otherwise transferred
+to a third party, or that generates direct or indirect revenue, including but
+not limited to integration into automotive ECUs, PDUs, network switches,
+simulation tools, AUTOSAR stacks, or safety-critical systems.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GRANT OF PERMITTED USE
+
+Subject to the terms and conditions of this License, norxs hereby grants you
+a worldwide, royalty-free, non-exclusive, non-transferable, non-sublicensable
+licence to exercise the PERMITTED USE of the SOFTWARE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RESTRICTIONS
+
+The following are expressly prohibited without a separate written commercial
+licence agreement executed with norxs Technology LLC:
+
+1. COMMERCIAL USE of the SOFTWARE or any derivative works thereof.
+
+2. Sublicensing, selling, renting, leasing, or transferring the SOFTWARE or
+   any rights granted herein to any third party.
+
+3. Removing, altering, or obscuring any copyright notice, attribution
+   statement, or this License from any copy or portion of the SOFTWARE.
+
+4. Using the SOFTWARE to train, fine-tune, or otherwise derive machine
+   learning models without prior written consent from norxs.
+
+5. Representing the SOFTWARE as your own work or misrepresenting its origin.
+
+6. Using the SOFTWARE in any safety-critical application (including ISO 26262
+   ASIL-A through ASIL-D, IEC 61508 SIL-1 through SIL-4, or equivalent)
+   in a production vehicle or industrial system without a commercial licence
+   and the associated safety evidence package from norxs.
+
+7. Using the SOFTWARE's UnavailablePqcKemProvider or MockKemProvider_TestOnly
+   classes, or any wiring around them, as if they provided real post-quantum
+   security — see pqc-kem-extension/README.md. This is a use restriction
+   distinct from and in addition to the above.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ATTRIBUTION
+
+Any permitted use that results in a publication, presentation, report, or
+publicly accessible artifact must include the following attribution:
+
+    "This work uses the norxs SOTIF Plausibility Gate and PQC KEM Extension
+     reference implementation. Copyright (c) 2026 norxs Technology LLC.
+     https://norxs.com"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMMERCIAL LICENSING
+
+For COMMERCIAL USE, production deployment rights, ISO 26262 / ISO 21448
+safety evidence packages (HARA, SOTIF validation target, FMEA, FTA, DFA,
+Safety Case), UN R155 / ISO 21434 TARA and CSMS documentation, ASPICE process
+documentation, a production ML-KEM backend integration, or long-term
+engineering support, contact:
+
+    norxs Technology LLC
+
+All commercial engagements are conducted under Non-Disclosure Agreement.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. NORXS DOES NOT
+WARRANT THAT THE SOFTWARE IS ERROR-FREE, THAT IT MEETS ANY SAFETY STANDARD IN
+ITS REFERENCE FORM, OR THAT IT IS SUITABLE FOR USE IN ANY SAFETY-CRITICAL
+APPLICATION WITHOUT THE ACCOMPANYING SAFETY EVIDENCE PACKAGE. THE PQC KEM
+EXTENSION IN PARTICULAR PROVIDES NO CRYPTOGRAPHIC SECURITY IN ITS AS-SHIPPED
+FORM — SEE pqc-kem-extension/README.md.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL NORXS,
+ITS OFFICERS, DIRECTORS, EMPLOYEES, OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; VEHICULAR ACCIDENTS; PERSONAL INJURY; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GOVERNING LAW
+
+This License shall be governed by and construed in accordance with the laws of
+the State of Wyoming, United States of America, without regard to its conflict
+of law provisions. Any dispute arising under this License shall be subject to
+the exclusive jurisdiction of the courts of Sheridan County, Wyoming.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+(c) 2026 norxs Technology LLC. All rights reserved.
+Safety Engineering, Built from the Ground Up.
